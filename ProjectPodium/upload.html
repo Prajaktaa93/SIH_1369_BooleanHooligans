@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        height: 200px;
+        width: 200px;
+        border: 2px solid black;
+    }
+</style>
+
+<body>
+    <input id="namebox" type="text"><br><br>
+    <img id="myimg"><label id="UpProgress"></label><br><br>
+    <button id="select">Select Upload</button>
+    <button id="upload">Upload </button>
+    <button id="retrieve">Retrieve </button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js'
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js'
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js'
+        import { getDatabase } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js'
+        import { getStorage } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-storage.js'
+    </script>
+    <script src="firebase.js"></script>
+    <script id="MainScript">
+        var ImgName, ImgUrl;
+        var files = [];
+        var reader;
+
+        document.getElementById("select").onclick = function (e) {
+
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = e => {
+
+                files = e.target.files;
+                reader = new FileReader();
+                reader.onload = function () {
+                    document.getElementById("myimg").src = reader.result;
+                }
+                reader.readAsDataURL(files[0])
+            }
+            input.click();
+        }
+
+        document.getElementById('upload').onclick = function () {
+            ImgName = document.getElementById('namebox').value;
+            var uploadTask = firebase.storage().ref('Images/' + ImgName + 'png').put(files[0]);
+            uploadTask.on('state_changed', function (snapshot) {
+
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+                document.getElementById('UpProgress').innerHTML = 'upload:' + progress + '%'
+            },
+
+                //error handling
+                function (error) {
+                    alert('error in saving the image');
+                },
+
+                //sumbit image link to data
+                function () {
+                    uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+                        ImgUrl = url;
+                        firebase.database().ref('Picture/' + ImgName).set({
+                            Name: ImgName,
+                            Link: ImgUrl
+                        });
+                        alert('image added successfully');
+                    }
+                    );
+                });
+        }
+
+        document.getElementById('retrieve').onclick = function(){
+        ImgName = document.getElementById('namebox').value;
+        firebase.database().ref('Picture/' + ImgName).on('value', function(snapshot){
+        document.getElementById('myimg').src = snapshot.val().Link;
+});
+}
+    </script>
+</body>
+
+</html>
+

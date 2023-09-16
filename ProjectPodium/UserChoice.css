@@ -1,0 +1,170 @@
+* { 
+    margin : 0;
+    padding: 0;
+    font-family : "Poppins", sans-serif;
+  }
+
+/** tagcss **/
+#logout{
+  padding: 1% 2% 1% 2%;
+  color: white;
+  background-color: red;
+  float:right;
+}
+  header{
+
+    background-color: #3b7197;
+  }
+  body {
+    background-color: #f6feff;
+    height: 100svh;
+    width: 100svw;
+  }
+
+  li{
+
+    list-style-type: none;
+  }
+  a{
+
+    text-decoration: none;
+  }
+  footer{
+
+    height: 30lvh;
+    background-color: #3b7197;
+  }
+  /** cards **/
+  .container {
+    position : relative;
+    width : 80vw;
+    display : flex;
+    align-items : center;
+    justify-content : space-around;
+    flex-wrap : wrap;
+    
+  }
+  
+  .container .card {
+    position: relative;
+    max-width : 300px;
+    height : 215px;  
+    background-color : #70bfdf;
+    margin : 30px 10px;
+    padding : 20px 15px;
+    
+    display : flex;
+    flex-direction : column;
+    box-shadow : 0 5px 20px rgba(0,0,0,0.5);
+    transition : 0.3s ease-in-out;
+    border-radius : 15px;
+    cursor: pointer;
+  }
+  .container .card:hover {
+    height : 320px;    
+  }
+  
+  
+  .container .card .image {
+    position : relative;
+    width : 220px;
+    height : 220px;
+    
+    top : -40%;
+    left: 24px;
+    box-shadow : 0 5px 20px rgb(0,0,0,0);
+    z-index : 1;
+  }
+  
+  .container .card .image img {
+    max-width : 100%;
+    border-radius : 15px;
+  }
+  
+  .container .card .content {
+    position : relative;
+    top : -140px;
+    padding : 10px 15px;
+    color : #111;
+    text-align : center;
+    visibility : hidden;
+    opacity : 0;
+    transition : 0.3s ease-in-out;
+      
+  }
+  
+  .container .card:hover .content {
+     margin-top : 30px;
+     visibility : visible;
+     opacity : 1;
+     transition-delay: 0.2s;
+    
+  }
+  .cards-wrapper{
+
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      
+  }
+
+  /** navbar **/
+
+  .logo{
+
+    color: white;
+    font-family: 'Cairo Play','poppins','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2.5rem;
+    margin-left: 10%;
+    
+    
+  }
+  .navbar-wrapper{
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .navbar{
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 100lvw;
+      height: 7rem;
+      background-color: #3b7197;
+
+      
+  }
+
+  .links{
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 60%;
+      font-size: larger;
+      
+      
+  }
+  .links>li>a{
+
+    color: white;
+  }
+  .links>li:hover{
+      transform: scale(1.1);
+      
+  }
+  
+  

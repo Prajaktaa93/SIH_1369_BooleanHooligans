@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectPodium</title>
+    <link rel="stylesheet" href="landingpagemodi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="login">
+        <button onclick="loginRedirect()">
+        Log In
+        </button>
+    </div>
+    <div class="title"></div>
+    
+    <div class="main-cover">
+        <div class="main-title">
+            ProjectPodium
+        </div>
+
+        <div class="imgwrap"><img src="Resources/images/9814.jpg"></div>
+        
+        <div class="title-box">
+            <p style="font-size: x-large; color: #387e87;margin-bottom: 2%;">Nationally Engaged Universities</p>
+            <p style="font-size: 4em; color: #0f3c5f;font-weight: 600;margin-bottom: 2%">Stand Out</p>
+            <p style="font-size: 3em; color: #0a3c5f;margin-bottom: 2%;">From The Crowd</p>
+            <p style="font-size: larger; color: #387e87;">Grow your circle of learning. Join us learn from your seniors.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js'
+    
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js'
+    
+        // Add Firebase products that you want to use
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js'
+      </script>
+    <script src="firebase.js"></script>
+    <script>
+
+        function loginRedirect(){
+            location.replace("login.html");
+
+        }
+    </script>
+</body>
+</html>

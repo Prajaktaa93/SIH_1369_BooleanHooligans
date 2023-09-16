@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Checker</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Plagiarism Checker</h1>
+    <p>Upload your text file to check for plagiarism:</p>
+    <input type="file" id="fileInput">
+    <button onclick="checkPlagiarism()">Check Plagiarism</button>
+
+    <div id="plagiarismResult" style="display: none;">
+        <h2>Plagiarism Result</h2>
+        <p id="resultMessage"></p>
+        <p id="overallPercentage"></p>
+        <pre id="copiedText"></pre>
+    </div>
+
+    <script>
+        function checkPlagiarism() {
+            const fileInput = document.getElementById('fileInput');
+            const plagiarismResult = document.getElementById('plagiarismResult');
+            const resultMessage = document.getElementById('resultMessage');
+            const overallPercentage = document.getElementById('overallPercentage');
+            const copiedText = document.getElementById('copiedText');
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const inputData = event.target.result;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://www.prepostseo.com/apis/checkPlag', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        const sources = response.sources;
+
+                        if (sources.length === 0) {
+                            resultMessage.textContent = 'No plagiarism found.';
+                        } else {
+                            let totalPercent = 0;
+                            let sourceResult = 'Found copied text in the following sources:\n';
+                            let firstSourceText = '';
+
+                            for (let i = 0; i < sources.length; i++) {
+                                const source = sources[i];
+                                sourceResult += `${i + 1}) Link: ${source.link}, Count: ${source.count}, Percent: ${source.percent}\n`;
+                                totalPercent += source.percent;
+
+                                // Store the copied text from the first source
+                                if (i === 0) {
+                                    firstSourceText = source.text;
+                                }
+                            }
+
+                            const overallPercent = totalPercent / sources.length;
+
+                            resultMessage.textContent = sourceResult;
+                            overallPercentage.textContent = `Overall Plagiarism Percentage: ${overallPercent.toFixed(2)}%`;
+                            copiedText.textContent = 'Copied Text:\n' + firstSourceText;
+
+                            plagiarismResult.style.display = 'block';
+                        }
+                    }
+                };
+
+                const postData = 'key=e071ee92c64a102b8e0ea5286d9591ed&data=' + encodeURIComponent(inputData);
+                xhr.send(postData);
+            };
+
+            if (file) {
+                reader.readAsText(file);
+            } else {
+                alert('Please select a file.');
+            }
+        }
+    </script>
+</body>
+</html>

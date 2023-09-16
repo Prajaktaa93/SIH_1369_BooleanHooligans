@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Podium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo+Play&family=New+Rocker&family=Poppins:wght@200&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@700&display=swap" rel="stylesheet">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <header>
+    <div class="navbar-wrapper">
+      <p class="logo">ProjectPodium</p>
+      <nav class="navbar">
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="plagiarism.html">Plagiarism</a></li>
+          <div>
+            <button onclick="logout()" id="logout" style="padding: 10px 20px 10px 20px; color: aliceblue;background-color: rgb(251, 89, 89);border-radius: 10px;border-style: none;border:2px solid rgb(248, 50, 50)">
+            Log out
+            </button>
+        </div>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <body>
+    <div class="cards-wrapper">
+      <div class="container">
+        <div class="card" id="science-card">
+          <div class="image">
+            <img href="#" src=Resources/images/science.png>
+          </div>
+          <div class="content" >
+            <h3 class = "card-title">Science</h3>
+            <p class="card-content">
+              Here you can find the projects related to domains:
+              <br>
+              Codes, Research papers, AI&ML, etc
+            </p>
+          </div>
+        </div>
+        <div class="card" id="commerce-card">
+          <div class="image">
+            <img href="#" src=Resources/images/commerce.png>
+          </div>
+          <div class="content">
+            <h3 class = "card-title">Commerce</h3>
+            <p class="card-content">
+              Here you can find the projects related to domains:
+              <br>
+              Business, Economics, Finance, etc
+            </p>
+          </div>
+        </div>
+        <div class="card" id="arts-card">
+          <div class="image"><img href="#" src=Resources/images/arts.png></div>
+          <div class="content">
+            <h3 class = "card-title">Arts</h3>
+            <p class="card-content">
+              Here you can find the projects related to domains:
+              <br>
+              Digital Art, Music, Literature, etc
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <footer></footer>
+  <script>
+    // Get references to the card elements
+    const scienceCard = document.getElementById("science-card");
+    const commerceCard = document.getElementById("commerce-card");
+    const artsCard = document.getElementById("arts-card");
+  
+    // Add click event listeners to the card elements
+    scienceCard.addEventListener("click", function () {
+      window.location.href = "ProjectPages/scienceProjects.html";
+    });
+  
+    commerceCard.addEventListener("click", function () {
+      window.location.href = "ProjectPages/commerceProjects.html";
+    });
+  
+    artsCard.addEventListener("click", function () {
+      window.location.href = "ProjectPages/artsProjects.html";
+    });
+  </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+   <script type="module">
+       import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js'
+   
+       // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+       import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js'
+   
+       // Add Firebase products that you want to use
+       import { getAuth } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js'
+       import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js'
+     </script>
+   <script src="../firebase.js"></script>
+   <script src="admin.js"></script>
+
+</html>
